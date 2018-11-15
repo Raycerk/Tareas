@@ -9,6 +9,8 @@ int mostrar();
 int borrar();
 
 int cant = 0;
+string busqueda;
+int sel = 0;
 
 struct alumnos
 {
@@ -38,23 +40,23 @@ int main ()
 	
 	switch(ele)
 	{
-	case 1:;
+	case 1:
 		registrar();
 		break;
 		
-	case 2:;
+	case 2:
 		editar();
 		break;
 	
-	case 3:;
+	case 3:
 		mostrar();
 		break;
 		
-	case 4:;
+	case 4:
 		borrar();
 		break;	
 	
-	case 5:;
+	case 5:
 		return 0;
 		break;
 	}
@@ -97,23 +99,50 @@ int editar ()
 {
 	system ("cls");
 	
-	string busqueda;
-	cin.ignore();
 	cout << "Editar alumno." << endl << endl;
 	cout << "Introduzca matricula a buscar:" << endl;
+	cin.ignore();
 	getline (cin,busqueda);
 	
-	for(int i=0;i>cant;i++)
+	for(int i=0;i<cant;i++)
 	{
 		if(busqueda == x[i].matricula)
 		{
-			cout << x[i].nombre << " " << x[i].apellido << " " << x[i].matricula << " " << x[i].telefono  << " " << x[i].email << endl << endl; 
+			cout << x[i].nombre << " " << x[i].apellido << " " << x[i].matricula << " " << x[i].telefono  << " " << x[i].email << endl << endl;
+			cout << "¿Que dato deseas editar de este alumno?" <<endl << endl;
+			cout << "1.Nombre\n2.Apellido\n3.Matricula\n4.Telefono\n5.Email\nOtro valor.Cancelar\n";
+			cin >> sel;
+			
+			switch(sel)
+			{
+			case 1:
+				cout << "Inserte nuevo nombre" << endl;
+				
+				break;
+			case 2:
+				cout << "Inserte nuevo apellido" << endl;
+				
+				break;
+			case 3:
+				cout << "Inserte nueva matricula" << endl;
+				
+				break;
+			case 4:
+				cout << "Inserte nuevo telefono" << endl;
+				
+				break;
+			case 5:
+				cout << "Inserte nuevo Email" << endl;
+				
+				break;
+			default:
+				main();
+			}
 		}
 		else
 		{
 			cout << "No se encontraron resultados que coincidan con la busqueda." << endl << endl;
 		}
-		
 	}
 	
 	system ("pause");
@@ -146,9 +175,35 @@ int borrar ()
 	system ("cls");
 	
 	cout << "Borrar alumno." << endl;
+	cout << "Introduzca matricula a buscar:" << endl;
+	cin.ignore();
+	getline (cin,busqueda);
 	
-	
-	
+	for(int i=0;i<cant;i++)
+	{
+		if(busqueda == x[i].matricula)
+		{
+			cout << x[i].nombre << " " << x[i].apellido << " " << x[i].matricula << " " << x[i].telefono  << " " << x[i].email << endl << endl;
+			cout << "¿Seguro de que desea borrar este alumno del registro?\n1.Si\n2.No\n";
+			cin >> sel;
+			switch(sel)
+			{
+			case 1:
+				cout << "Registro del alumno borrado.";
+				
+				break;
+			case 2:
+				main();
+				break;
+			}
+			
+		}
+		else
+		{
+			cout << "No se encontraron resultados que coincidan con la busqueda." << endl << endl;
+		}
+		
+	}
 	
 	system ("pause");
 	
