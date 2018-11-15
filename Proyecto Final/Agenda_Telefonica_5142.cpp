@@ -74,17 +74,27 @@ int registrar ()
 		
 		cout << "Registrar alumno." << endl << endl;
 		
-		cout << "Intro alumno" << endl;
+		cout << "Introduza nombre del alumno:" << endl;
 		getchar();
 		getline(cin, x[cant].nombre);
-		cout << "Intro apellido" << endl;
+		system("cls");
+		
+		cout << "Introduzca apellido del alumno:" << endl;
 		getline(cin, x[cant].apellido);
-		cout << "Intro matricula" << endl;
+		system("cls");
+		
+		cout << "Introduzca matricula del alumno:" << endl;
 		getline(cin, x[cant].matricula);
-		cout << "Intro telefono" << endl;
+		system("cls");
+		
+		cout << "Introduzca telefono del alumno:" << endl;
 		getline(cin, x[cant].telefono);
-		cout << "Intro email" << endl;
+		system("cls");
+		
+		cout << "Introduzca email del alumno:" << endl;
 		getline(cin, x[cant].email);
+		system("cls");
+		
 		cant++;
 		
 		cout << "¿Quieres registrar mas alumnos?" << endl;
@@ -116,23 +126,42 @@ int editar ()
 			switch(sel)
 			{
 			case 1:
-				cout << "Inserte nuevo nombre" << endl;
+				cout << "Inserte nuevo nombre:" << endl;
+				cin.ignore();
+				getline (cin,x[i].nombre);
+				
+				cout << "Nuevo nombre aplicado." << endl;
 				
 				break;
 			case 2:
-				cout << "Inserte nuevo apellido" << endl;
+				cout << "Inserte nuevo apellido:" << endl;
+				cin.ignore();
+				getline (cin,x[i].apellido);
+				
+				cout << "Nuevo apellido aplicado." << endl;
 				
 				break;
 			case 3:
-				cout << "Inserte nueva matricula" << endl;
+				cout << "Inserte nueva matricula:" << endl;
+				cin.ignore();
+				getline (cin,x[i].matricula);
+				
+				cout << "Nueva matricula aplicada." << endl;
 				
 				break;
 			case 4:
-				cout << "Inserte nuevo telefono" << endl;
+				cout << "Inserte nuevo telefono:" << endl;
+				cin.ignore();
+				getline (cin,x[i].telefono);
 				
+				cout << "Nuevo telefono aplicado." << endl;
 				break;
 			case 5:
-				cout << "Inserte nuevo Email" << endl;
+				cout << "Inserte nuevo Email:" << endl;
+				cin.ignore();
+				getline (cin,x[i].email);
+				
+				cout << "Nuevo Email aplicado." << endl;
 				
 				break;
 			default:
@@ -189,7 +218,13 @@ int borrar ()
 			switch(sel)
 			{
 			case 1:
-				cout << "Registro del alumno borrado.";
+				x[i].nombre = " ";
+				x[i].apellido = " ";
+				x[i].matricula = " ";				
+				x[i].telefono = " ";
+				x[i].email = " ";
+				
+				cout << "\nRegistro del alumno borrado.";
 				
 				break;
 			case 2:
