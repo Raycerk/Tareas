@@ -7,10 +7,22 @@ int registrar();
 int editar();
 int mostrar();
 int borrar();
+int lista();
 
 int cant = 0;
 string busqueda;
 int sel = 0;
+
+int valtel = 0;
+int conftel = 0;
+
+int confemail = 0;
+int puntos = 0;
+int arrobas = 0;
+
+int confcal1 = 0;
+int confcal2 = 0;
+int confcal3 = 0;
 
 struct alumnos
 {
@@ -19,6 +31,14 @@ struct alumnos
 	string matricula;
 	string telefono;
 	string email;
+	float cal1;
+	float cal2;
+	float cal3;
+	float calfinal;
+	string domcalle;
+	string domnum;
+	string domcol;
+	
 }x[100];
 
 int main ()
@@ -32,7 +52,8 @@ int main ()
 	cout << "2. Editar alumno." << endl;
 	cout << "3. Mostrar alumnos." << endl;
 	cout << "4. Borrar alumno." << endl;
-	cout << "5. Salir del pograma." << endl << endl;
+	cout << "5. Lista de alumnos." << endl;
+	cout << "6. Salir del pograma." << endl << endl;
 	
 	cout << "Elige la opcion que deseas ejecutar." << endl;
 	cout << "Eleccion: ";
@@ -54,9 +75,13 @@ int main ()
 		
 	case 4:
 		borrar();
-		break;	
-	
+		break;
+		
 	case 5:
+		lista();
+		break;		
+	
+	case 6:
 		return 0;
 		break;
 	}
@@ -87,18 +112,155 @@ int registrar ()
 		getline(cin, x[cant].matricula);
 		system("cls");
 		
-		cout << "Introduzca telefono del alumno:" << endl;
-		getline(cin, x[cant].telefono);
+		while (conftel == 0)
+		{
+			cout << "Introduzca telefono del alumno:" << endl;
+			getline(cin, x[cant].telefono);
+			valtel = (x[cant].telefono).size();
+			if (valtel >= 8 && valtel <= 11)
+				{
+					conftel = 1;
+				}
+			else
+				{
+					cout << "El telefono no esta dentro del rango de digitos 8 a 11" << endl;
+					system ("pause");
+				}
+			system("cls");
+		}
+		
+		while (confemail == 0)
+		{
+			system ("cls");
+			arrobas = 0;
+			puntos = 0;
+			
+			cout << "Introduzca email del alumno:" << endl;
+			getline(cin, x[cant].email);
+		
+			for (int i = 0; x[cant].email[i] != NULL; i++) 
+			{
+				if (x[cant].email[i] == 64) 
+				{
+					arrobas++;
+				}
+			
+				if (x[cant].email[i] == 46)
+				{
+					puntos++;
+				}
+			}
+		
+			if(arrobas == 0)
+			{
+				cout << "No hay ninguna arroba presente." << endl;
+			}
+		
+			if(puntos == 0)
+			{
+				cout << "No hay ningun punto presente." << endl;
+			}
+		
+			if(arrobas > 1)
+			{
+				cout << "Hay mas de una arroba presente." << endl;
+			}
+		
+			if(puntos > 1)
+			{
+				cout << "Hay mas de un punto presente." << endl;
+			}
+		
+			if(arrobas == 1 && puntos == 1)
+			{
+				confemail = 1;
+			}
+			
+			if(confemail == 0)
+			{
+			system ("pause");
+			}
+			
+		}	
+		
 		system("cls");
 		
-		cout << "Introduzca email del alumno:" << endl;
-		getline(cin, x[cant].email);
+		while(confcal1 == 0)
+		{
+			cout << "Introduza calificacion 1 del alumno:" << endl;
+			cin >> x[cant].cal1;
+			
+			if (x[cant].cal1 > 0 && x[cant].cal1 < 100)
+				{
+					confcal1 = 1;
+				}
+			else
+				{
+					cout << "Solo se admiten valores del 0 al 100" << endl;
+					system ("pause");
+				}
+			
+			system("cls");
+		}
+		
+		while(confcal2 == 0)
+		{
+			cout << "Introduza calificacion 2 del alumno:" << endl;
+			cin >> x[cant].cal2;
+			
+			if (x[cant].cal2 > 0 && x[cant].cal2 < 100)
+				{
+					confcal2 = 1;
+				}
+			else
+				{
+					cout << "Solo se admiten valores del 0 al 100" << endl;
+					system ("pause");
+				}
+			
+			system("cls");
+		}
+		
+		while(confcal3 == 0)
+		{
+			cout << "Introduza calificacion 3 del alumno:" << endl;
+			cin >> x[cant].cal3;
+			
+			if (x[cant].cal3 > 0 && x[cant].cal3 < 100)
+				{
+					confcal3 = 1;
+				}
+			else
+				{
+					cout << "Solo se admiten valores del 0 al 100" << endl;
+					system ("pause");
+				}
+			
+			system("cls");
+		}
+		
+		x[cant].calfinal = (x[cant].cal1 * 0.3) + (x[cant].cal2 * 0.45) + (x[cant].cal3 * 0.25);
+	
+		cout << "Introduzca el domicilio del alumno:" << endl;
+		cout << "Calle:" << endl;
+		getchar();
+		getline(cin, x[cant].domcalle);
+		
+		cout << "Numero:" << endl;
+		getchar();
+		getline(cin, x[cant].domnum);
+		
+		cout << "Colonia:" << endl;
+		getchar();
+		getline(cin, x[cant].domcol);
+		
+	
 		system("cls");
 		
 		cant++;
 		
 		cout << "¿Quieres registrar mas alumnos?" << endl;
-		cout << "1.Si\n2.No" << endl;
+		cout << "1.Si\nCualquier otro valor.No" << endl;
 		cin >> des;
 	}
 	
@@ -107,6 +269,7 @@ int registrar ()
 
 int editar ()
 {
+	
 	system ("cls");
 	
 	cout << "Editar alumno." << endl << endl;
@@ -150,17 +313,76 @@ int editar ()
 				
 				break;
 			case 4:
-				cout << "Inserte nuevo telefono:" << endl;
-				cin.ignore();
-				getline (cin,x[i].telefono);
+				while (conftel == 0)
+				{
+					cout << "Inserte nuevo telefono:" << endl;
+					getline(cin, x[i].telefono);
+					valtel = (x[i].telefono).size();
+					if (valtel >= 8 && valtel <= 11)
+						{
+							conftel = 1;
+						}
+					else
+						{
+							cout << "El telefono no esta dentro del rango de digitos 8 a 11" << endl;
+							system ("pause");
+						}
+					system("cls");
+				}
 				
 				cout << "Nuevo telefono aplicado." << endl;
-				break;
-			case 5:
-				cout << "Inserte nuevo Email:" << endl;
-				cin.ignore();
-				getline (cin,x[i].email);
 				
+				break;
+			case 5:		
+				while (confemail == 0)
+				{
+					system ("cls");
+					arrobas = 0;
+					puntos = 0;
+			
+					cout << "Inserte nuevo email:" << endl;
+					getline(cin, x[cant].email);
+		
+					for (int i = 0; x[cant].email[i] != NULL; i++) 
+					{
+						if (x[cant].email[i] == 64) 
+						{
+							arrobas++;
+						}
+			
+						if (x[cant].email[i] == 46)
+						{
+							puntos++;
+						}
+					}
+		
+					if(arrobas == 0)
+					{
+						cout << "No hay ninguna arroba presente." << endl;
+					}
+		
+					if(puntos == 0)
+					{
+						cout << "No hay ningun punto presente." << endl;
+					}
+		
+					if(arrobas > 1)
+					{
+						cout << "Hay mas de una arroba presente." << endl;
+					}
+		
+					if(puntos > 1)
+					{		
+						cout << "Hay mas de un punto presente." << endl;
+					}		
+		
+					if(arrobas == 1 && puntos == 1)
+					{
+						confemail = 1;
+					}
+			
+				}
+					
 				cout << "Nuevo Email aplicado." << endl;
 				
 				break;
@@ -168,7 +390,7 @@ int editar ()
 				main();
 			}
 		}
-		else
+		else if (i == cant)
 		{
 			cout << "No se encontraron resultados que coincidan con la busqueda." << endl << endl;
 		}
@@ -177,9 +399,11 @@ int editar ()
 	system ("pause");
 	
 	main ();
+
+	
+	
 }
-
-
+	
 int mostrar ()
 {
 	system ("cls");
@@ -197,6 +421,17 @@ int mostrar ()
 	
 	main ();
 }
+
+int lista ()
+{
+	system("cls");
+	
+	for(int i=0;i<cant;i++)
+	{
+	cout << x[i].nombre << " " << x[i].apellido << " " << x[i].cal1 << " " <<  x[i].cal2 << " " << x[i].cal3 << " " << x[i].calfinal << endl << endl;   
+	}
+}
+
 
 
 int borrar ()
@@ -233,7 +468,7 @@ int borrar ()
 			}
 			
 		}
-		else
+		else if (i == cant)
 		{
 			cout << "No se encontraron resultados que coincidan con la busqueda." << endl << endl;
 		}
