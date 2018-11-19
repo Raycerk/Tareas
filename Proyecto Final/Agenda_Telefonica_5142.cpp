@@ -45,9 +45,6 @@ struct alumnos
 int main ()
 {
 	
-	
-	
-	
 	string f;
 	ofstream archivo;
 	archivo.open ("Registro.txt");
@@ -127,10 +124,6 @@ int registrar ()
 	int des;
 	
 	des = 1;
-	
-	
-	
-	
 	
 	while (des==1)
 	{
@@ -523,23 +516,11 @@ int borrar ()
 		
 	}
 	
+	cant--;
+	
 	system ("pause");
 	
 	main ();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
