@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string.h>
+#include <fstream>
 
 using namespace std;
 
@@ -43,7 +44,32 @@ struct alumnos
 
 int main ()
 {
+	
+	
+	
+	
+	string f;
+	ofstream archivo;
+	archivo.open ("Registro.txt");
+	if (archivo.is_open())
+	{	
+		for(int i=0;i<cant;i++)
+		{
+		x[i].nombre = f;
+		x[i].apellido = f;
+		x[i].matricula = f;
+		x[i].telefono = f;
+		x[i].email = f;
+		}
+	}
+	
 	int ele;
+	
+	conftel = 0;
+	confemail = 0;
+	confcal1 = 0;
+	confcal2 = 0;
+	confcal3 = 0;
 	
 	system ("cls");
 	
@@ -85,6 +111,15 @@ int main ()
 		return 0;
 		break;
 	}
+	
+	
+	for(int i=0;i<cant;i++)
+	{
+	archivo << x[i].nombre << " " << x[i].apellido << " " << x[i].matricula << " " << x[i].telefono  << " " << x[i].email << endl << endl;   
+	}
+	
+	archivo.close();
+	
 }
 
 int registrar ()
@@ -93,13 +128,24 @@ int registrar ()
 	
 	des = 1;
 	
+	
+	
+	
+	
 	while (des==1)
 	{
+	
+		conftel = 0;
+		confemail = 0;
+		confcal1 = 0;
+		confcal2 = 0;
+		confcal3 = 0;
+	
 		system("cls");
 		
 		cout << "Registrar alumno." << endl << endl;
 		
-		cout << "Introduza nombre del alumno:" << endl;
+		cout << "Introduzca nombre del alumno:" << endl;
 		getchar();
 		getline(cin, x[cant].nombre);
 		system("cls");
@@ -313,6 +359,7 @@ int editar ()
 				
 				break;
 			case 4:
+				
 				while (conftel == 0)
 				{
 					cout << "Inserte nuevo telefono:" << endl;
@@ -410,10 +457,11 @@ int mostrar ()
 	
 	cout << "Mostrar alumnos." << endl << endl;
 	
-	
 	for(int i=0;i<cant;i++)
 	{
+	
 	cout << x[i].nombre << " " << x[i].apellido << " " << x[i].matricula << " " << x[i].telefono  << " " << x[i].email << endl << endl;   
+
 	}
 	
 	
