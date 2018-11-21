@@ -9,6 +9,7 @@ int editar();
 int mostrar();
 int borrar();
 int lista();
+int manual();
 
 int cant = 0;
 string busqueda;
@@ -44,21 +45,8 @@ struct alumnos
 
 int main ()
 {
-	
-	string f;
 	ofstream archivo;
 	archivo.open ("Registro.txt");
-	if (archivo.is_open())
-	{	
-		for(int i=0;i<cant;i++)
-		{
-		x[i].nombre = f;
-		x[i].apellido = f;
-		x[i].matricula = f;
-		x[i].telefono = f;
-		x[i].email = f;
-		}
-	}
 	
 	int ele;
 	
@@ -76,7 +64,8 @@ int main ()
 	cout << "3. Mostrar alumnos." << endl;
 	cout << "4. Borrar alumno." << endl;
 	cout << "5. Lista de alumnos." << endl;
-	cout << "6. Salir del pograma." << endl << endl;
+	cout << "6. Manual de usuario." << endl;
+	cout << "7. Salir del pograma." << endl << endl;
 	
 	cout << "Elige la opcion que deseas ejecutar." << endl;
 	cout << "Eleccion: ";
@@ -105,11 +94,18 @@ int main ()
 		break;		
 	
 	case 6:
+		manual();
+		break;		
+	
+	case 7:
 		return 0;
 		break;
-	}
-	
-	
+	default:
+		cout << "Valor fuera de rango" << endl;
+		system ("pause");
+		main();
+	}	
+
 	for(int i=0;i<cant;i++)
 	{
 	archivo << x[i].nombre << " " << x[i].apellido << " " << x[i].matricula << " " << x[i].telefono  << " " << x[i].email << endl << endl;   
@@ -237,6 +233,7 @@ int registrar ()
 				{
 					cout << "Solo se admiten valores del 0 al 100" << endl;
 					system ("pause");
+					editar();
 				}
 			
 			system("cls");
@@ -255,6 +252,7 @@ int registrar ()
 				{
 					cout << "Solo se admiten valores del 0 al 100" << endl;
 					system ("pause");
+					editar();
 				}
 			
 			system("cls");
@@ -273,6 +271,7 @@ int registrar ()
 				{
 					cout << "Solo se admiten valores del 0 al 100" << endl;
 					system ("pause");
+					editar();
 				}
 			
 			system("cls");
@@ -322,7 +321,7 @@ int editar ()
 		{
 			cout << x[i].nombre << " " << x[i].apellido << " " << x[i].matricula << " " << x[i].telefono  << " " << x[i].email << endl << endl;
 			cout << "¿Que dato deseas editar de este alumno?" <<endl << endl;
-			cout << "1.Nombre\n2.Apellido\n3.Matricula\n4.Telefono\n5.Email\nOtro valor.Cancelar\n";
+			cout << "1.Nombre\n2.Apellido\n3.Matricula\n4.Telefono\n5.Email\n6.Calificaciones\nOtro valor.Cancelar\n";
 			cin >> sel;
 			
 			switch(sel)
@@ -426,8 +425,68 @@ int editar ()
 				cout << "Nuevo Email aplicado." << endl;
 				
 				break;
+			case 6:
+			
+				while(confcal1 == 0)
+				{
+				cout << "Introduza nueva calificacion 1 del alumno:" << endl;
+				cin >> x[cant].cal1;
+			
+				if (x[cant].cal1 > 0 && x[cant].cal1 < 100)
+					{
+						confcal1 = 1;
+					}
+				else
+					{
+						cout << "Solo se admiten valores del 0 al 100" << endl;
+						system ("pause");
+					}
+			
+				system("cls");
+				}
+		
+				while(confcal2 == 0)
+				{
+				cout << "Introduza nueva calificacion 2 del alumno:" << endl;
+				cin >> x[cant].cal2;
+			
+				if (x[cant].cal2 > 0 && x[cant].cal2 < 100)
+				{
+					confcal2 = 1;
+				}
+				else
+				{
+					cout << "Solo se admiten valores del 0 al 100" << endl;
+					system ("pause");
+				}
+			
+				system("cls");
+				}
+		
+				while(confcal3 == 0)
+				{
+				cout << "Introduza nueva calificacion 3 del alumno:" << endl;
+				cin >> x[cant].cal3;
+			
+				if (x[cant].cal3 > 0 && x[cant].cal3 < 100)
+					{
+						confcal3 = 1;
+					}
+				else
+					{
+						cout << "Solo se admiten valores del 0 al 100" << endl;
+						system ("pause");
+					}
+			
+				system("cls");
+				}
+				
+				x[cant].calfinal = (x[cant].cal1 * 0.3) + (x[cant].cal2 * 0.45) + (x[cant].cal3 * 0.25);
+				break;
+			
 			default:
 				main();
+				break;
 			}
 		}
 		else if (i == cant)
@@ -469,8 +528,13 @@ int lista ()
 	
 	for(int i=0;i<cant;i++)
 	{
-	cout << x[i].nombre << " " << x[i].apellido << " " << x[i].cal1 << " " <<  x[i].cal2 << " " << x[i].cal3 << " " << x[i].calfinal << endl << endl;   
+	cout << x[i].nombre << " " << x[i].apellido << " ";   
+	if (x[i].cal1 < 100.1)
+		{
+			cout<< x[i].cal1 << " " <<  x[i].cal2 << " " << x[i].cal3 << " " << x[i].calfinal << endl << endl;
+		}
 	}
+	main();
 }
 
 
@@ -499,6 +563,9 @@ int borrar ()
 				x[i].matricula = " ";				
 				x[i].telefono = " ";
 				x[i].email = " ";
+				x[i].cal1 = 101;
+				x[i].cal2 = 101;
+				x[i].cal3 = 101;
 				
 				cout << "\nRegistro del alumno borrado.";
 				
@@ -516,11 +583,29 @@ int borrar ()
 		
 	}
 	
-	cant--;
-	
 	system ("pause");
 	
 	main ();
 }
+
+
+
+int manual ()
+{
+	system("cls");
+	cout << "MANUAL DE USUARIO.\n\n\nEn este manual se explica como darle uso a este pograma.\n\n¿Cual es el proposito de este programa?\nPoder tener un registro de los datos y control de las calificaciones de los alumnos que se deseen registrar por el usuario.\n\n¿Como se le da uso a este programa?\nAl estar en la pantalla del menu principal, inserte el numero de la opcion correspondiente a lo que desee realizar.\n\nOPCION REGISTRAR.\nEn esta opcion, es capaz de introducir un alumno al registro, capturando sus datos personales, y sus calificaciones.\n\nOPCION EDITAR.\nEn esta opcion se le permite cambiar cualquiera de los datos de un alumno ya registrado.\n\nOPCION MOSTRAR.\nEn esta opcion puede visualizar en forma de lista a todos los alumnos registrados con sus respectivos datos personales\n\nOPCION BORRAR.\nEsta opcion se encarga de elminar el registro de un alumno, incluyendo todos sus datos y calificaciones.\n\nOPCION LISTA.\nEn esta opcion se desplega un listado de todos los alumnos con sus respectivas calificaciones y promedio final.\n\nOPCION MANUAL.\nDesplega el manual de usuario, el que esta leyendo ahora mismo.\n\nOPCION SALIR.\nAl seleccionar esta opcion el pograma termina, y sale del mismo.\n\n";                                                                                                                             
+	system("pause");
+	main();
+}
+
+
+
+
+
+
+
+
+
+
 
 
