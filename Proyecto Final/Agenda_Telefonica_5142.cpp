@@ -173,9 +173,9 @@ int registrar ()
 			cout << "Introduzca email del alumno:" << endl;
 			getline(cin, x[cant].email);
 		
-			for (int i = 0; x[cant].email[i] != NULL; i++) 
+			for (int i = 0; x[cant].email[i] != NULL; i++)
 			{
-				if (x[cant].email[i] == 64) 
+				if (x[cant].email[i] == 64)
 				{
 					arrobas++;
 				}
@@ -380,7 +380,7 @@ int editar ()
 					puntos = 0;
 			
 					cout << "Inserte nuevo email:" << endl;
-					getline(cin, x[cant].email);
+					getline(cin, x[i].email);
 		
 					for (int i = 0; x[cant].email[i] != NULL; i++) 
 					{
@@ -418,6 +418,11 @@ int editar ()
 					if(arrobas == 1 && puntos == 1)
 					{
 						confemail = 1;
+					}
+					
+					if (confemail == 0)
+					{
+						system("pause");
 					}
 			
 				}
@@ -499,8 +504,6 @@ int editar ()
 	
 	main ();
 
-	
-	
 }
 	
 int mostrar ()
@@ -589,7 +592,6 @@ int borrar ()
 }
 
 
-
 int manual ()
 {
 	system("cls");
@@ -597,15 +599,6 @@ int manual ()
 	system("pause");
 	main();
 }
-
-
-
-
-
-
-
-
-
 
 
 
